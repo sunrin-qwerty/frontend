@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Login from "./pages/login"
-import {jwtDecode} from "jwt-decode"
+import { jwtDecode } from "jwt-decode"
 import Cookies from "js-cookie"
 import "./App.css"
 
@@ -38,21 +38,23 @@ function App() {
     }
 
     return (
-        <div>
-            {user ? (
-                <div>
-                    <h1>Welcome, {user.name}!</h1>
-                    <img
-                        src={user.picture}
-                        alt="Profile"
-                        style={{ borderRadius: "50%", width: "100px", height: "100px" }}
-                    />
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
-            ) : (
-                <Login onLoginSuccess={handleLoginSuccess} />
-            )}
-        </div>
+        <>
+            <div>
+                {user ? (
+                    <div>
+                        <h1>{user.name}!</h1>
+                        <img
+                            src={user.picture}
+                            alt="Profile"
+                            style={{ borderRadius: "50%", width: "100px", height: "100px" }}
+                        />
+                        <button onClick={handleLogout}>Logout</button>
+                    </div>
+                ) : (
+                    <Login onLoginSuccess={handleLoginSuccess} />
+                )}
+            </div>
+        </>
     )
 }
 
