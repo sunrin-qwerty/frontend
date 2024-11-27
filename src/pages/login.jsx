@@ -26,8 +26,9 @@ function Login({ onLoginSuccess }) {
             }
         } catch (error) {
             if (error.response && error.response.status === 403) {
-                setErrorMessage(error.response.data.message || '학교 계정으로 로그인해주세요.')
+                alert(error.response.data.message )
             } else {
+                alert('로그인에 실패했습니다.')
                 setErrorMessage('로그인에 실패했습니다.')
             }
         }
@@ -35,6 +36,7 @@ function Login({ onLoginSuccess }) {
 
     const handleFailure = () => {
         setErrorMessage("로그인에 실패했습니다.")
+        alert("로그인에 실패했습니다.")
     }
 
     return (
@@ -46,7 +48,6 @@ function Login({ onLoginSuccess }) {
                         onSuccess={handleSuccess} 
                         onError={handleFailure} 
                     />
-
                 </div>
             </GoogleOAuthProvider>
         </div>

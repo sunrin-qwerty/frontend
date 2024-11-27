@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Login from "./pages/Login"
+import Login from "./pages/login"
 import axios from "axios"
 import Cookies from "js-cookie"
 import "./App.css"
@@ -14,7 +14,6 @@ function App() {
                 const response = await axios.get("http://localhost:3000/check-auth", { 
                     withCredentials: true 
                 })
-                
                 setUser(response.data)
                 console.log("User authenticated:", response.data)
             } catch (error) {
