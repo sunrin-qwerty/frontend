@@ -1,60 +1,76 @@
 import React, { useState, useEffect } from "react"
-import Login from "./pages/login"
-import { jwtDecode } from "jwt-decode"
+import Login from "./pages/Login"
+import axios from "axios"
 import Cookies from "js-cookie"
 import "./App.css"
 
 function App() {
     const [user, setUser] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        const token = Cookies.get("authToken")
-        if (token) {
-            const decodedToken = jwtDecode(token)
-            setUser({
-                name: decodedToken.name,
-                email: decodedToken.email,
-                picture: decodedToken.picture,
-            })
+        const checkAuth = async () => {
+            try {
+                const response = await axios.get("http://localhost:3000/check-auth", { 
+                    withCredentials: true 
+                })
+                
+                setUser(response.data)
+                console.log("User authenticated:", response.data)
+            } catch (error) {
+                console.error("Auth check failed:", error)
+                setUser(null)
+            } finally {
+                setIsLoading(false)
+            }
         }
+
+        checkAuth()
     }, [])
 
-    const handleLoginSuccess = (token) => {
-        const decodedToken = jwtDecode(token)
-        console.log("Decoded Token:", decodedToken)
-
-        setUser({
-            name: decodedToken.name,
-            email: decodedToken.email,
-            picture: decodedToken.picture,
-        })
-
-        Cookies.set("authToken", token, { path: "/", secure: true, sameSite: "strict" })
+    const handleLoginSuccess = (userData) => {
+        console.log("Login success:", userData)
+        setUser(userData.user)
     }
 
-    const handleLogout = () => {
-        setUser(null)
-        Cookies.remove("authToken", { path: "/" })
+    const handleLogout = async () => {
+        try {
+            await axios.post("http://localhost:3000/logout", {}, { withCredentials: true })
+            setUser(null)
+            alert("로그아웃되었습니다.")
+        } catch (error) {
+            console.error("Logout error:", error)
+            alert("로그아웃에 실패했습니다.")
+        }
+    }
+
+    if (isLoading) {
+        return <div>Loading...</div>
     }
 
     return (
-        <>
-            <div>
-                {user ? (
-                    <div>
-                        <h1>{user.name}!</h1>
-                        <img
-                            src={user.picture}
-                            alt="Profile"
-                            style={{ borderRadius: "50%", width: "100px", height: "100px" }}
+        <div>
+            {user ? (
+                <div>
+                    <h1>Welcome, {user.name}!</h1>
+                    <p>Email: {user.email}</p>
+                    {user.picture && (
+                        <img 
+                            src={user.picture} 
+                            alt="Profile" 
+                            style={{ 
+                                borderRadius: "50%", 
+                                width: "100px", 
+                                height: "100px" 
+                            }} 
                         />
-                        <button onClick={handleLogout}>Logout</button>
-                    </div>
-                ) : (
-                    <Login onLoginSuccess={handleLoginSuccess} />
-                )}
-            </div>
-        </>
+                    )}
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            ) : (
+                <Login onLoginSuccess={handleLoginSuccess} />
+            )}
+        </div>
     )
 }
 
