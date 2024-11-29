@@ -5,13 +5,14 @@ import axios from "axios"
 function Login({ onLoginSuccess }) {
     const [errorMessage, setErrorMessage] = useState("")
     const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const handleSuccess = async (credentialResponse) => {
         const { credential } = credentialResponse
         
         try {
             const response = await axios.post(
-                "http://localhost:3000/login/google-login",
+                backendUrl + "/login/google-login",
                 { token: credential },
                 { 
                     withCredentials: true,

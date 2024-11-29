@@ -7,11 +7,12 @@ import "./App.css"
 function App() {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/check-auth", { 
+                const response = await axios.get(backendUrl + "/check-auth", { 
                     withCredentials: true 
                 })
                 setUser(response.data)
@@ -34,7 +35,7 @@ function App() {
 
     const handleLogout = async () => {
         try {
-            await axios.post("http://localhost:3000/logout", {}, { withCredentials: true })
+            await axios.post(backendUrl + "/logout", {}, { withCredentials: true })
             setUser(null)
             alert("로그아웃되었습니다.")
         } catch (error) {
