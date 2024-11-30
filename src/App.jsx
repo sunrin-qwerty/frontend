@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react"
-import Login from "./pages/login"
 import axios from "axios"
-import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom"
 import "./App.css"
-import Assignment from "./pages/assignment"
 
 function App() {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const navigate = useNavigate()
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -29,9 +28,8 @@ function App() {
         checkAuth()
     }, [])
 
-    const handleLoginSuccess = (userData) => {
-        console.log("Login success:", userData)
-        setUser(userData.user)
+    const handleLoginClick = () => {
+        navigate('/login')
     }
 
     const handleLogout = async () => {
@@ -59,7 +57,9 @@ function App() {
                     <a href="/assignment"><button>Assignment</button></a>
                 </div>
             ) : (
-                <Login onLoginSuccess={handleLoginSuccess} />
+                <div>
+                    <button onClick={handleLoginClick}>Login with Google</button>
+                </div>
             )}
         </div>
     )

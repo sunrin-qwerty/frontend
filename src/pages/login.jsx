@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
-function Login({ onLoginSuccess }) {
+function Login() {
     const [errorMessage, setErrorMessage] = useState("")
     const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
     const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const navigate = useNavigate()
 
     const handleSuccess = async (credentialResponse) => {
         const { credential } = credentialResponse
@@ -23,11 +25,11 @@ function Login({ onLoginSuccess }) {
             )
 
             if (response.status === 200) {
-                onLoginSuccess(response.data)
+                navigate('/')
             }
         } catch (error) {
             if (error.response && error.response.status === 403) {
-                alert(error.response.data.message )
+                alert(error.response.data.message)
             } else {
                 alert('로그인에 실패했습니다.')
                 setErrorMessage('로그인에 실패했습니다.')
