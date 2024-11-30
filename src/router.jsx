@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from './APP.JSX'
-import Test from './pages/test.jsx'
 import Login from './pages/login.jsx'
+import Assignment from './pages/assignment.jsx'
 import ErrorPage from './pages/error.jsx'
 
 const router = createBrowserRouter([
@@ -10,12 +10,12 @@ const router = createBrowserRouter([
         element: <App />,
         errorElement: <ErrorPage />
     },{
-        path: "/test",
-        element: <Test />,
-        errorElement: <ErrorPage />
-    },{
         path: "/login",
         element: <Login />,
+        errorElement: <ErrorPage />
+    },{
+        path: "/assignment",
+        element: <Assignment />,
         errorElement: <ErrorPage />
     }
 ])

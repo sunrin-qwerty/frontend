@@ -3,6 +3,7 @@ import Login from "./pages/login"
 import axios from "axios"
 import Cookies from "js-cookie"
 import "./App.css"
+import Assignment from "./pages/assignment"
 
 function App() {
     const [user, setUser] = useState(null)
@@ -55,6 +56,7 @@ function App() {
                     <h1>Welcome, {user.name}!</h1>
                     <p>Email: {user.email}</p>
                     <button onClick={handleLogout}>Logout</button>
+                    <a href="/assignment"><button>Assignment</button></a>
                 </div>
             ) : (
                 <Login onLoginSuccess={handleLoginSuccess} />
