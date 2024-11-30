@@ -32,6 +32,11 @@ function App() {
         navigate('/login')
     }
 
+    const openinfo = () => {
+        console.log(user.name)
+        console.log(user.student_id)
+    }
+
     const handleLogout = async () => {
         try {
             await axios.post(backendUrl + "/logout", {}, { withCredentials: true })
@@ -51,14 +56,14 @@ function App() {
         <div>
             {user ? (
                 <div>
-                    <h1>Welcome, {user.name}!</h1>
-                    <p>Email: {user.email}</p>
+                    <button onClick={openinfo}>{user.name}</button>
+                    {/* <p>Email: {user.email}</p> */}
                     <button onClick={handleLogout}>Logout</button>
-                    <a href="/assignment"><button>Assignment</button></a>
+                    {/* <a href="/assignment"><button>Assignment</button></a> */}
                 </div>
             ) : (
                 <div>
-                    <button onClick={handleLoginClick}>Login with Google</button>
+                    <button onClick={handleLoginClick}>Login</button>
                 </div>
             )}
         </div>
