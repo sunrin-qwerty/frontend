@@ -1,0 +1,55 @@
+.top-header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+}
+
+.user-menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+.user-menu a:hover {
+    text-decoration: underline;
+}

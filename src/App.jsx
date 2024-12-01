@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import "./App.css"
+import Header from "./pages/header"
 
 function App() {
     const [user, setUser] = useState(null)
@@ -32,11 +33,6 @@ function App() {
         navigate('/login')
     }
 
-    const openinfo = () => {
-        console.log(user.name)
-        console.log(user.student_id)
-    }
-
     const handleLogout = async () => {
         try {
             await axios.post(backendUrl + "/logout", {}, { withCredentials: true })
@@ -54,18 +50,21 @@ function App() {
 
     return (
         <div>
-            {user ? (
-                <div>
-                    <button onClick={openinfo}>{user.name}</button>
-                    {/* <p>Email: {user.email}</p> */}
-                    <button onClick={handleLogout}>Logout</button>
-                    {/* <a href="/assignment"><button>Assignment</button></a> */}
-                </div>
-            ) : (
-                <div>
-                    <button onClick={handleLoginClick}>Login</button>
-                </div>
-            )}
+            <Header />
+            <div>
+                {user ? (
+                    <div>
+                        <button onClick={openinfo}>{user.name}</button>
+                        {/* <p>Email: {user.email}</p> */}
+                        <button onClick={handleLogout}>Logout</button>
+                        {/* <a href="/assignment"><button>Assignment</button></a> */}
+                    </div>
+                ) : (
+                    <div>
+                        <button onClick={handleLoginClick}>Login</button>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
