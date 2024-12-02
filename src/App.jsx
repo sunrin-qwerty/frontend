@@ -51,20 +51,7 @@ function App() {
     return (
         <div>
             <Header />
-            <div>
-                {user ? (
-                    <div>
-                        <button onClick={openinfo}>{user.name}</button>
-                        {/* <p>Email: {user.email}</p> */}
-                        <button onClick={handleLogout}>Logout</button>
-                        {/* <a href="/assignment"><button>Assignment</button></a> */}
-                    </div>
-                ) : (
-                    <div>
-                        <button onClick={handleLoginClick}>Login</button>
-                    </div>
-                )}
-            </div>
+            <h1>qwerty-web</h1>
         </div>
     )
 }
