@@ -9,6 +9,7 @@ function App() {
         <div>
             <Header />
             <h1>qwerty-web</h1>
+            <h2>sunrin web development club</h2>
         </div>
     )
 }
