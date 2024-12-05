@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import ReactDOM from "react-dom"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import "./style/header.css"
@@ -25,7 +24,7 @@ function Header() {
         }
 
         checkAuth()
-    }, [])
+    }, []) // Only run this effect once on mount
 
     const handleLogout = async () => {
         try {
@@ -38,14 +37,16 @@ function Header() {
         }
     }
 
-    if (isLoading) return null
+    // Early return if still loading
+    if (isLoading) return <div className="loading-spinner">Loading...</div> 
 
-    const openinfo = () => {
+    const openInfo = () => {
         console.log(user.name)
         console.log(user.student_id)
+        // You could also navigate to a user profile page or open a modal here
     }
 
-    const headerContent = (
+    return (
         <header className="top-header">
             <div className="container">
                 <div className="user-menu">
@@ -53,10 +54,8 @@ function Header() {
                     {user ? (
                         <>
                             <a href="/assignment">Assignment</a>
-                            <a><button onClick={openinfo}>{user.name}</button></a>
-                            <a>
-                                <button onClick={handleLogout}>Logout</button>
-                            </a>
+                            <button onClick={openInfo}>{user.name}</button>
+                            <button onClick={handleLogout}>Logout</button>
                         </>
                     ) : (
                         <a href="/login">Login</a>
@@ -65,8 +64,6 @@ function Header() {
             </div>
         </header>
     )
-
-    return headerContent
 }
 
 export default Header
