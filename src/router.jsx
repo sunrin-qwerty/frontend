@@ -3,6 +3,7 @@ import App from './APP.JSX'
 import Login from './pages/login.jsx'
 import Assignment from './pages/assignment.jsx'
 import ErrorPage from './pages/error.jsx'
+import Apply from './pages/apply.jsx'
 
 const router = createBrowserRouter([
     {
@@ -13,9 +14,14 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
         errorElement: <ErrorPage />
-    },{
-        path: "/assignment",
-        element: <Assignment />,
+    },//{
+    //     path: "/assignment",
+    //     element: <Assignment />,
+    //     errorElement: <ErrorPage />
+    // }
+    {
+        path: "/apply",
+        element: <Apply />,
         errorElement: <ErrorPage />
     }
 ])

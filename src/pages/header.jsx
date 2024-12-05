@@ -53,8 +53,9 @@ function Header() {
                     <a href="/">Home</a>
                     {user ? (
                         <>
-                            <a href="/assignment">Assignment</a>
-                            <button onClick={openInfo}>{user.name}</button>
+                            {/* <a href="/assignment">Assignment</a> */}
+                            <a href="/apply">Apply</a>
+                            <a onClick={openInfo}>{user.name}</a>
                             <button onClick={handleLogout}>Logout</button>
                         </>
                     ) : (
