@@ -6,11 +6,16 @@ import Header from "./pages/header"
 
 function App() {
     return (
-        <div>
-            <Header />
-            <h1>qwerty-web</h1>
-            <h2>sunrin web development club</h2>
-        </div>
+        <>
+            <header className="top-header">
+                <Header />
+            </header>
+            <div>
+                <img src="./logo.svg" alt="QWERTY" style={{ width: "200px", margin: "50px" }}/>
+                <h1>QWERTY<br /></h1>
+                <h2>SUNRIN<br />WEB DEVELOPMENT CLUB</h2>
+            </div>
+        </>
     )
 }
 

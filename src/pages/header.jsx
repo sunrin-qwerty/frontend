@@ -47,23 +47,21 @@ function Header() {
     }
 
     return (
-        <header className="top-header">
-            <div className="container">
-                <div className="user-menu">
-                    <a href="/">Home</a>
-                    {user ? (
-                        <>
-                            {/* <a href="/assignment">Assignment</a> */}
-                            <a href="/apply">Apply</a>
-                            <a onClick={openInfo}>{user.name}</a>
-                            <button onClick={handleLogout}>Logout</button>
-                        </>
-                    ) : (
-                        <a href="/login">Login</a>
-                    )}
-                </div>
+        <div className="container">
+            <div className="user-menu">
+                <a href="/">Home</a>
+                {user ? (
+                    <>
+                        <a href="/assignment">과제</a>
+                        <a href="/apply">지원하기</a>
+                        <a onClick={openInfo}>{user.name}</a>
+                        <button onClick={handleLogout}>Logout</button>
+                    </>
+                ) : (
+                    <a href="/login">Login</a>
+                )}
             </div>
-        </header>
+        </div>
     )
 }
 
