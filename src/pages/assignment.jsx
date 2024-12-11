@@ -30,9 +30,7 @@ function Assignment() {
 
     return (
         <>
-            <header className="top-header">
-                <Header />
-            </header>
+            <Header />
             <div className="assignment-container">
                 {error && <div className="error-message">{error}</div>}
                 <h1>Assignments</h1>

@@ -71,9 +71,7 @@ function Apply() {
 
     return (
         <div>
-            <header className="top-header">
-                <Header />
-            </header>
+            <Header />
             <h1>지원하기</h1>
             <form onSubmit={handleSubmit}>
                 <div>

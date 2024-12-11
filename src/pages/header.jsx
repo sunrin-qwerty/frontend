@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import "./style/header.css"
-import { ReactDOM, createPortal } from "react-dom"
 
 function Header() {
     const [user, setUser] = useState(null)
@@ -25,7 +24,7 @@ function Header() {
         }
 
         checkAuth()
-    }, []) // Only run this effect once on mount
+    }, [])
 
     const handleLogout = async () => {
         try {
@@ -47,21 +46,22 @@ function Header() {
         // You could also navigate to a user profile page or open a modal here
     }
 
-    return ReactDOM, createPortal (
-        <div className="user-menu">
-            <a href="/">Home</a>
-            {user ? (
-                <>
-                    <a href="/assignment">과제</a>
-                    <a href="/apply">지원하기</a>
-                    <a onClick={openInfo}>{user.name}</a>
-                    <button onClick={handleLogout}>Logout</button>
-                </>
-            ) : (
-                <a href="/login">Login</a>
-            )}
-        </div>,
-        document.getElementById('header-jsx')
+    return (
+        <div className="container">
+            <div className="user-menu">
+                <a href="/">Home</a>
+                <a href="/apply">지원하기</a>
+                {user ? (
+                    <>
+                        <a href="/assignment">과제</a>
+                        <a onClick={openInfo}>{user.name}</a>
+                        <button onClick={handleLogout}>Logout</button>
+                    </>
+                ) : (
+                    <button onClick={() => navigate("/login")}>Login</button>
+                )}
+            </div>
+        </div>
     )
 }
 
