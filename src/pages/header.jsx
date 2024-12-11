@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import "./style/header.css"
+import { ReactDOM, createPortal } from "react-dom"
 
 function Header() {
     const [user, setUser] = useState(null)
@@ -46,7 +47,7 @@ function Header() {
         // You could also navigate to a user profile page or open a modal here
     }
 
-    return (
+    return ReactDOM, createPortal (
         <div className="user-menu">
             <a href="/">Home</a>
             {user ? (
@@ -59,7 +60,8 @@ function Header() {
             ) : (
                 <a href="/login">Login</a>
             )}
-        </div>
+        </div>,
+        document.getElementById('header-jsx')
     )
 }
 

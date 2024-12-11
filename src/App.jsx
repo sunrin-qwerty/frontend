@@ -7,10 +7,8 @@ import Header from "./pages/header"
 function App() {
     return (
         <>
-            <header className="top-header">
-                <Header />
-            </header>
             <div>
+                <Header />
                 <img src="./logo.svg" alt="QWERTY" style={{ width: "200px", margin: "50px" }}/>
                 <h1>QWERTY<br /></h1>
                 <h2>SUNRIN<br />WEB DEVELOPMENT CLUB</h2>
