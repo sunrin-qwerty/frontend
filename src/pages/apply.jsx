@@ -27,7 +27,7 @@ function Apply() {
                 setApplications(response.data)
             } catch (err) {
                 console.error("Error fetching applications:", err)
-                setError("Failed to load applications.")
+                setError("로그인을 해주세요.")
             }
         }
 
